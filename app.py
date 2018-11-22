@@ -8,14 +8,16 @@ title = "TODO with Flask"
 heading = "ToDo Reminder"
 
 ##Un-Comment when running against the Cosmos DB Emulator
-# client = MongoClient("mongodb://127.0.0.1:10250/?ssl=true") #host uri
+# client = MongoClient("mongodb://ref-sample-app.documents.azure.com:10255/?ssl=true") #host uri
 # db = client.test    #Select the database
-# db.authenticate(name="localhost",password='C2y6yDjf5' + r'/R' + '+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw' + r'/Jw==')
+# db.authenticate(name="ref-sample-app",password='9XFaWqlOWZwehp1w2RxO9GI95BBGddwSqksWjdzPsqSoyfPTaMGtNnqB9Eh2xvhyVI9gSGDZa6DPj1xy5k2iOA==')
+
 
 ## Comment out when running locally
 client = MongoClient(os.getenv("MONGOURL"))
 db = client.test    #Select the database
 db.authenticate(name=os.getenv("MONGO_USERNAME"),password=os.getenv("MONGO_PASSWORD"))
+
 todos = db.todo #Select the collection
 
 def redirect_url():
@@ -122,7 +124,7 @@ wsgi_app = app.wsgi_app
 
 if __name__ == "__main__":
 
-    app.run()
+    app.run("0.0.0.0")
 
 
 
